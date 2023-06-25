@@ -23,7 +23,8 @@ jobs:
       run: mvn clean install
     - name: Run Tests
       run: mvn test
-    - name: JUnit Test Reporting
-      uses: mikepenz/junit-test-reporting-action@v2
+    - name: Publish Test Report
+      uses: mikepenz/action-junit-report@v3
+      if: success() || failure()
       with:
-        report_files: '**/surefire-reports/TEST-*.xml'
+        report_paths: '**/build/test-results/test/TEST-*.xml'
