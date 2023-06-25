@@ -34,4 +34,4 @@ jobs:
       if: always()
       with:
         files: |
-          surefire-reports/**/*.xml
+          target/surefire-reports/**/*.xml
