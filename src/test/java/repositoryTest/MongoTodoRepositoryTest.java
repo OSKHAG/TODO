@@ -98,7 +98,7 @@ class MongoTodoRepositoryTest {
         updatedTodo = todoRepository.update(updatedTodo, todo.getTodoId());
 
         assertNotEquals(todo.getTodoId(), updatedTodo.getTodoId());
-        verify(collection).replaceOne(new Document("TODO ID", todo.getTodoId()), new Document("$set", updatedTodo.convertToDocument()));
+        verify(collection).replaceOne(new Document("TODO ID", todo.getTodoId()), new Document(updatedTodo.convertToDocument()));
     }
 
     @Test

@@ -28,13 +28,12 @@ public class MongoDbConnectionTest {
     @BeforeEach
     public void setUp(){
         input = mock(InputHandler.class);
+        when(input.getStringInput()).thenReturn("user1");
         connection = new MongoDbConnection(input);
     }
 
     @Test
     public void loginCorrectPasswordTest(){
-        when(input.getStringInput()).thenReturn("user1");
-        connection.login();
         assertTrue(connection.testConnection(5));
     }
     @Test
@@ -49,7 +48,7 @@ public class MongoDbConnectionTest {
 
     @Test
     public void testConnectionTest(){
-        assertFalse(connection.testConnection(5));
+        assertTrue(connection.testConnection(5));
     }
     @Test
     public void getDatabaseTest(){

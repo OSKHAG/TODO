@@ -15,14 +15,15 @@ public class InputHandler {
         boolean validInput = false;
 
         while (!validInput) {
-            input = scanner.nextLine();
+            input = scanner.nextLine().trim();
 
-            if (input.trim().isEmpty()) {
+            if (input.isEmpty()) {
                 System.out.println("Invalid input. Please enter a non-empty string: ");
             } else {
                 validInput = true;
             }
         }
+
         return input;
     }
 
@@ -32,14 +33,13 @@ public class InputHandler {
 
         while (!validInput) {
             try {
-                input = scanner.nextInt();
+                input = Integer.parseInt(scanner.nextLine());
                 validInput = true;
-            } catch (InputMismatchException e) {
+            } catch (NumberFormatException e) {
                 System.out.println("Invalid input. Please enter an integer: ");
-                scanner.nextLine();
             }
         }
-        scanner.nextLine();
+
         return input;
     }
 }

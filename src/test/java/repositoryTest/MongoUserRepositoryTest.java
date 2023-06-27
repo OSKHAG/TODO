@@ -77,7 +77,7 @@ public class MongoUserRepositoryTest {
         updatedUser = userRepository.update(updatedUser, originalUser.getId());
 
         assertNotEquals(originalUser.getId(), updatedUser.getId());
-        verify(collection).replaceOne(new Document("User ID", originalUser.getId()), new Document("$set", updatedUser.convertToDocument()));
+        verify(collection).replaceOne(new Document("User ID", originalUser.getId()), new Document(updatedUser.convertToDocument()));
     }
 
     @Test
