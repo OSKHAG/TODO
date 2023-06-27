@@ -12,6 +12,12 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: read
+      issues: read
+      checks: write
+      pull-requests: write
+      
     steps:
     - uses: actions/checkout@v3
     - name: Set up JDK 17
@@ -21,9 +27,9 @@ jobs:
         distribution: 'oracle'
     - name: Build with Maven
       run: mvn clean install
-    - name: Run Tests
-      run: mvn test
-    - name: JUnit Test Reporting
-      uses: mikepenz/junit-test-reporting-action@v2
+    - name: Publish Test Results
+      uses: EnricoMi/publish-unit-test-result-action@v2
+      if: always()
       with:
-        report_files: '**/surefire-reports/TEST-*.xml'
+        files: |
+          target/surefire-reports/**/*.xml
