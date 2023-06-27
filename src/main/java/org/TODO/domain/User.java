@@ -24,13 +24,13 @@ public class User {
     public void setName(String name) {
         this.name = name;
     }
-    public Document convertToDocument(){
+
+    public Document convertToDocument() {
         return new Document().append("User ID", getId())
                 .append("User Name", getName());
     }
-    public void setId(String id){
+
+    public void setId(String id) {
         this.id = id;
     }
-
-
 }

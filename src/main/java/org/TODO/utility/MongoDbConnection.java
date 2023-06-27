@@ -16,6 +16,7 @@ public class MongoDbConnection {
 
     public MongoDbConnection(InputHandler input) {
         this.input = input;
+        login();
     }
 
     public void login() {
@@ -72,6 +73,12 @@ public class MongoDbConnection {
             }
         }
         return documents;
+    }
+    public MongoCollection<Document> getUserCollection(){
+        return getDatabase().getCollection("USER");
+    }
+    public MongoCollection<Document> getTodoCollection(){
+        return getDatabase().getCollection("TODO");
     }
 
 }

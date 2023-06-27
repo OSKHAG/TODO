@@ -3,6 +3,8 @@ package org.TODO.domain;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 
+
+
 public class Todo {
     private String todoId;
     private String description;
@@ -53,12 +55,13 @@ public class Todo {
     public void setUserName(String userName) {
         this.userName = userName;
     }
-    public void setUser(User user){
+
+    public void setUser(User user) {
         setUserId(user.getId());
         setUserName(user.getName());
     }
 
-    public Document convertToDocument(){
+    public Document convertToDocument() {
         return new Document().append("TODO ID", getTodoId())
                 .append("Description", getDescription())
                 .append("Status", isDone())
@@ -68,5 +71,12 @@ public class Todo {
 
     public void setTodoId(String id) {
         todoId = id;
+    }
+
+    public void printTodo() {
+        System.out.println("\nID : " + getTodoId() +
+                "\nDescription : " + getDescription() +
+                "\nAssigned User : " + getUserName() +
+                "\nDone : " + isDone());
     }
 }

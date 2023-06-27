@@ -39,7 +39,7 @@ public class MongoUserRepository implements UserRepository {
     public User update(User user, String queryID) {
         Document query = new Document("User ID", queryID);
         Document update = user.convertToDocument();
-        collection.replaceOne(query, new Document("$set", update));
+        collection.replaceOne(query, update);
         return documentToUser(update);
     }
 

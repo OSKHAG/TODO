@@ -39,6 +39,7 @@ public class InputHandler {
                 scanner.nextLine();
             }
         }
+        scanner.nextLine();
         return input;
     }
 }

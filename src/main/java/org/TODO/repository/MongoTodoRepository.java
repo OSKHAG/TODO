@@ -49,7 +49,7 @@ public class MongoTodoRepository implements TodoRepository {
     public Todo update(Todo todo, String queryID) {
         Document query = new Document("TODO ID", queryID);
         Document update = todo.convertToDocument();
-        collection.replaceOne(query, new Document("$set", update));
+        collection.replaceOne(query, update);
         return todo;
     }
 
@@ -59,6 +59,7 @@ public class MongoTodoRepository implements TodoRepository {
     }
 
     private Todo documentToTodo(Document document) {
+        String todoID = document.getString("TODO ID");
         String description = document.getString("Description");
         boolean status = document.getBoolean("Status");
         String userId = document.getString("Assigned User ID");
@@ -66,6 +67,7 @@ public class MongoTodoRepository implements TodoRepository {
 
         User user = new User(userId);
         Todo todo = new Todo(description, user);
+        todo.setTodoId(todoID);
         todo.setDone(status);
         todo.setUserId(userId);
         todo.setUserName(userName);
